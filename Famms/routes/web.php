@@ -1,0 +1,69 @@
+<?php
+
+use App\Http\Controllers\authcontroller;
+use App\Http\Controllers\Backend\Brand\brandconroller;
+use App\Http\Controllers\Backend\Category\Categorycontroller;
+use App\Http\Controllers\Backend\Home\homecontroller as HomeHomecontroller;
+use App\Http\Controllers\Backend\Product\Productcontroller;
+use App\Http\Controllers\Frontend\Home\HomeController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get("/home",[HomeController::class,'index']);
+
+//Register
+Route::get("/register",[authcontroller::class,'index'])->middleware('guest'); // middlwear guest thi e thase jyare e login karse tyare e pacho login page ma nai jai sake url change karine
+Route::post("/register",[authcontroller::class,'store']);
+
+//Login
+Route::get("/login",[authcontroller::class,'login'])->middleware('guest');  // middlwear guest thi e thase jyare e login karse tyare e pacho login page ma nai jai sake url change karine
+Route::post("/login",[authcontroller::class,'validate_login']);
+
+//logout
+Route::get("/logout",[authcontroller::class,'logout']);
+
+//admin
+
+// anu group niche karyu che a example mate rakhyu che
+
+// Route::get("/admin/dashboard",[HomeHomecontroller::class,'index']);
+// Route::get("/admin/category",[Categorycontroller::class,'index']);
+// Route::get("/admin/add-category",[Categorycontroller::class,'add']);
+// Route::post("/admin/add-category",[Categorycontroller::class,'store']);
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+
+    Route::get("/dashboard",[HomeHomecontroller::class,'index']);
+    Route::get("/category",[Categorycontroller::class,'index']);
+    Route::get("/add-category",[Categorycontroller::class,'add']);
+    Route::post("/add-category",[Categorycontroller::class,'store']);
+    Route::get("/edit-category/{id}",[Categorycontroller::class,'update']);
+    Route::put("/edit-category/{id}",[Categorycontroller::class,'update_change']);
+    Route::delete("/delete-category/{id}",[Categorycontroller::class,'destroy']);
+
+    Route::get("/brand",[brandconroller::class,'index']);
+    Route::get("/add-brand",[brandconroller::class,'add']);
+    Route::post("/add-brand",[brandconroller::class,'store']);
+    Route::get("/edit-brand/{id}",[brandconroller::class,'update']);
+    Route::post("/edit-brand/{id}",[brandconroller::class,'update_change']);
+    Route::delete("/delete-brand/{id}",[brandconroller::class,'destroy']);
+
+
+    Route::get("/product",[Productcontroller::class,'index']);
+    Route::get("/add-product",[Productcontroller::class,'add']);
+    Route::post("/add-product",[Productcontroller::class,'store']);
+});
