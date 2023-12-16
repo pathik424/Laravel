@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\aproduct;
 use App\Http\Controllers\authcontroller;
+use App\Http\Controllers\Backend\aproduct\aproductcontroller;
 use App\Http\Controllers\Backend\Brand\brandconroller;
 use App\Http\Controllers\Backend\Category\Categorycontroller;
 use App\Http\Controllers\Backend\Home\homecontroller as HomeHomecontroller;
+use App\Http\Controllers\Backend\pathik\cartcontroller;
+use App\Http\Controllers\Backend\pathik\pathikcontroller;
 use App\Http\Controllers\Backend\Product\Productcontroller;
 use App\Http\Controllers\Frontend\Home\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -66,4 +70,27 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get("/product",[Productcontroller::class,'index']);
     Route::get("/add-product",[Productcontroller::class,'add']);
     Route::post("/add-product",[Productcontroller::class,'store']);
+
+    // Product Show in Home Page
+
+    Route::get("/pathik",[pathikcontroller::class,'index']);
+    Route::get("/add-pathik",[pathikcontroller::class,'add']);
+    Route::post("/add-pathik",[pathikcontroller::class,'store']);
+    Route::get("/edit-pathik/{id}",[pathikcontroller::class,'update']);
+    Route::post("/edit-pathik/{id}",[pathikcontroller::class,'update_change']);
+    Route::delete("/delete-pathik/{id}",[pathikcontroller::class,'destroy']);
+
 });
+
+    // add to cart product
+
+Route::get('cartproducts', [HomeController::class, 'index']);
+Route::get('cart', [cartcontroller::class, 'cartList']);
+Route::post('cart', [CartController::class, 'addToCart']);
+// Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart']);
+Route::post('clear', [CartController::class, 'clearAllCart']);
+
+
+
+

@@ -51,7 +51,6 @@
 
                 <tr class="table-info">
                     <td>
-                        {{-- {{dd($brands->category->name)}} --}}
                         {{$brands->category->name}}
                     </td>
                     <td>

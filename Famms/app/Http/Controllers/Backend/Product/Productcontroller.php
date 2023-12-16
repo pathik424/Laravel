@@ -5,16 +5,18 @@ namespace App\Http\Controllers\Backend\Product;
 use App\Http\Controllers\Controller;
 use App\Models\brand;
 use App\Models\category;
+use App\Models\product;
 use Illuminate\Http\Request;
 
 class Productcontroller extends Controller
 {
     public function index()
     {
-        $category = category::all();
-        $brand = brand::all();
+        // $category = category::all();
+        // $brand = brand::all();
+        $product = product::with('category','brand')->get(); // with option thi banne ek j page par brand ane category for each ma fervavi hoy to
 
-        return view("Backend.product.product", compact("category","brand"));
+        return view("Backend.product.product", compact("product"));
 
     }
 
@@ -22,8 +24,10 @@ class Productcontroller extends Controller
     {
         $cat = category::all();
         $brand = brand::all();
+        // $product = product::all();
 
-        return view("Backend.product.addproduct",compact("cat","brand"));
+
+        return view("Backend.product.addproduct",compact("brand","cat"));
     }
 
     public function store(Request $request)
@@ -46,7 +50,7 @@ class Productcontroller extends Controller
         // dd($request);
 
 
-        brand::create([
+        product::create([
 
             "cat_id"=> $request->cat_id,
             "brand_id"=> $request->brand_id,
@@ -55,6 +59,6 @@ class Productcontroller extends Controller
             "visible" => $request->visible,
             "image" =>$source,
         ]);
-        return redirect('admin/product')->with('message',"Brand added successfully");
+        return redirect('admin/product')->with('message',"Product added successfully");
     }
 }

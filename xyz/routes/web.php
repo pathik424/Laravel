@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\register;
 use App\Http\Controllers\registercontroller;
+use App\Http\Controllers\YourNameController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get("/register",[registercontroller::class,"index"]);
+Route::get("/users",[YourNameController::class,"index"]);
+Route::get("/adduser",[YourNameController::class,"add"]);
+Route::post("/adduser",[YourNameController::class,"store"]);
 Route::post("/register",[registercontroller::class,"register"]);

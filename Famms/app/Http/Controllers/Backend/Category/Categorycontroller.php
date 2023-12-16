@@ -23,7 +23,7 @@ class Categorycontroller extends Controller
         return view("Backend.category.addcategory");
     }
 
-    public function store(Request $request,category $category)
+    public function store(Request $request)
     {
 
         // for image handling

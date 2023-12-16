@@ -98,12 +98,12 @@
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="images/faces/face28.jpg" alt="profile"/>
-            </a>
+            {{-- </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
                 Settings
-              </a>
+              </a> --}}
               <a class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
@@ -327,6 +327,21 @@
                   <li class="nav-item"> <a class="nav-link" href="/admin/product">Products</a></li>
                 </ul>
               </div>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">Products</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/pathik">Aproduct</a></li>
+              </ul>
+            </div>
+
 
           </li>
 

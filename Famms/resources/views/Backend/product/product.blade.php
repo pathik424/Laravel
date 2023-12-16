@@ -50,32 +50,33 @@
             </thead>
             <tbody>
 
-                @forelse ($brand as $brands)
+                @forelse ($product as $products)
+                {{-- @dd($products); --}}
 
 
 
                 <tr class="table-info">
                     <td>
-                        {{-- {{dd($brands->category->name)}} --}}
-                        {{-- {{$brands->category->name}} --}}
+                        {{-- {{dd($products->category->name)}} --}}
+                        {{$products->category->name}}
                     </td>
 
                     <td>
                         {{-- {{dd($brands->category->name)}} --}}
-                        {{-- {{$brands->brand->name}} --}}
+                        {{$products->brand->name}}
                     </td>
 
                     <td>
-                        {{-- {{$brands->name}} --}}
+                        {{$products->name}}
                     </td>
                     <td>
-                        {{-- {{$brands->description}} --}}
+                        {{$products->description}}
                     </td>
                     <td>
                         <img src="" height="100px" width="100px" alt="No image found"></td>
 
                         <td>
-                            @if ($brands->visible === 0)
+                            @if ($products->visible === 0)
                             <h4>
                                 <span class="badge badge-danger ">Not Visible</span>
                             </h4>
@@ -87,8 +88,8 @@
                         </td>
 
                         <td>
-                    <a href="{{ url('/admin/edit-brand/' .$brands->id) }}" class="btn btn-sm btn-primary">Update</a>
-                   <Form action="{{ url('/admin/delete-brand/' .$brands->id) }}" method="post">
+                    <a href="{{ url('/admin/edit-brand/' .$products->id) }}" class="btn btn-sm btn-primary">Update</a>
+                   <Form action="{{ url('/admin/delete-brand/' .$products->id) }}" method="post">
                     @csrf
                     @method('delete')
 
@@ -99,7 +100,7 @@
 
                 @empty
                 <tr>
-                    <td colspan="5">No Category Available</td>
+                    <td colspan="5">No Product Available</td>
                 </tr>
 
 
