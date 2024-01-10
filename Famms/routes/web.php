@@ -40,6 +40,8 @@ Route::post("/login",[authcontroller::class,'validate_login']);
 //logout
 Route::get("/logout",[authcontroller::class,'logout']);
 
+
+
 //admin
 
 // anu group niche karyu che a example mate rakhyu che

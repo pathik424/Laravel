@@ -4,6 +4,7 @@ use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\backend\home\bhommecontroller;
 use App\Http\Controllers\backend\post\postcontroller;
 use App\Http\Controllers\frontend\home\homecontroller;
+use App\Http\Controllers\productcontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,4 +37,12 @@ Route::post("/admin/add-post",[postcontroller::class,'postform_save']);
 Route::get("/admin/update-post/{id}",[postcontroller::class,'postupdate']);
 Route::post("/admin/update-post/{id}",[postcontroller::class,'postupdate_change']);
 Route::delete("/admin/delete-post/{id}",[postcontroller::class,'destroy']);
+
+
+// Product
+
+
+Route::get("/product",[productcontroller::class,'index']);
+Route::get("/add-product",[productcontroller::class,'add']);
+Route::post("/add-product",[productcontroller::class,'store']);
 

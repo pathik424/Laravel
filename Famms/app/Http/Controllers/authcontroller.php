@@ -37,7 +37,7 @@ class authcontroller extends Controller
 
     public function validate_login(Request $request)
     {
-        // dd($request);
+        //dd($request);
         $request->validate(['email'=>'required','password'=>'required']); //ana thi backand ma upadte thase compulsary field thase
 
         $credential =$request->only('email','password'); // only email ane password e adjust karvu hoy to 2 j field rakhavi hoy to request

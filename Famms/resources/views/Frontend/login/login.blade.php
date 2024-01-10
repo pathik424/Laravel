@@ -20,9 +20,12 @@
         <form action="" method="POST">
             @csrf
             <h1>Login </h1>
+
             <div class="input-box">
-                <input type="text" placeholder="Email" name="email" required>
+                <input type="text" placeholder="Email/Username" name="email"  required>
             </div>
+
+
             <div class="input-box">
                 <input type="password" placeholder="Password" name="password" required>
             </div>
