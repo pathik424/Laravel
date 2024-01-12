@@ -19,27 +19,26 @@
 <body>
       <div id="">
          <header>Register new account</header>
-         <form method="post" action="" enctype="multipart/form-data" >
+         <form method="post" action="" enctype="multipart/form-data" onsubmit="adduser()">
             <fieldset>
                 <br/>
-                <input type="text" name="name" id="name" placeholder="name" required>
+                <input type="text" name="name" id="name" placeholder="name" >
                 @csrf
                 <br/><br/>
-               <input type="text" name="username" id="username" placeholder="Username" required autofocus>
+               <input type="text" name="username" id="username" placeholder="Username">
                <br/><br/>
-               <input type="email" name="email" id="email" placeholder="E-mail" required>
+               <input type="email" name="email" id="email" placeholder="E-mail">
                <br/><br/>
                <label for="submit"></label>
-               <input type="submit" name="submit" id="submit" value="REGISTER">
-            </fieldset>
-         </form>
-      </div>
+               <input type="submit" name="submit" id="submit"  value="REGISTER">
+               {{-- <div class ="w-100">
+                  <span id ="message" class="alert alert-success"></span>
+               </div> --}}
 
-
-      <div id="">
-        <table class="table table-striped table-dark">
-            <thead>
-              <tr>
+                <div id="">
+                <table class="table table-striped table-dark">
+                <thead>
+                <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
@@ -58,30 +57,74 @@
 
 <Script>
 
-    // // function getdata() {
 
-    // //     fetch("http://localhost:8000/api/regapi").then((res)=>res.json()).then(res)=>{
 
-    //         function getdata() {
-    //     fetch("http://localhost:8000/api/regapi").then((result) => result.json()).then((result) => {
-    //         var tmpdata = "";
-    //         //    console.log(result); // fetch line ma je lakhyu je enathi consol ma badho data mali jase
-    //         .result.forEach((User)=>{
-    //             tmpData+= "<tr>"
-    //             tmpData+= "<td>"+User.name+"</td>";
-    //             tmpData+= "<td>"+User.email+"</td>";
-    //             tmpData+= "<td>"+User.username+"</td>";
-    //             tmpData+= "<td><button class = 'btn btn-primary'>Edit</td>";
-    //             tmpData+= "<td><button class = 'btn btn-danger'>Delete</td>";
-    //             tmpData+= "</tr>"
 
-    //         })
-    //         document.getElementById("tabledata").innerHTML = tmpdata;
-    //     });
+// Java Add User Data (create)
 
+function adduser() { // add user function ne form na submit part ma nakhvo onlick
+    // alert("called")
+    // event.preventDefault() // anathi page load nai thay
+
+    // create karyu JS
+    let regapi = {};
+    regapi ['name'] = document.getElementById("name").value;
+    regapi ['email'] = document.getElementById("email").value;
+    regapi ['username'] = document.getElementById("username").value;
+
+    // console.log(regapi);
+
+    fetch("http://localhost:8000/api/registration",{
+
+        method : "POST",
+        headers:{
+            "Content-Type": "application/json",
+             },
+             body: JSON.stringify({
+                    name: regapi,
+                    username: regapi,
+                    email: regapi,
+                })
+            }).then((result) =>result.json()).then((result)=> {
+                console.log(result.length);
+                // console.log("result");
+                // document.getElementById("message").innerHTML = ""
+
+                // clear thai jase after registration field badhi j field clear ane reload empty thai jase submit pachi
+
+                document.getElementById("name").value = "";
+                document.getElementById("username").value = "";
+                document.getElementById("email").value = "";
+
+                getdata(); //Reload Table
+            })
+    }
+
+
+//Java API Update Data (Update)
+
+    // function updateform(regid) {
+    //     fetch(`http://localhost:8000/api/updatereg/${regid}`).then((result) => result.json()).then((result) => {
+    //         console.log(result);
+    //         document.getElementById("name").value = result.name;
+    //         document.getElementById("todo_username").value = result.username;
+    //         document.getElementById("email").value = result.email;
+    //     })
     // }
 
+// java API Delete Data (Delete)
 
+   function deleteform(delid) {
+        if (confirm('are you sure??')) {
+            fetch(`http://localhost:8000/api/deletereg/${delid}`).then((result) => result.json()).then((result) => {
+                // console.log(result);
+                getdata()
+            })
+        }
+    }
+
+
+//Java API View Data (view)
 
     function getdata() {
         fetch("http://localhost:8000/api/regapi").then((result) =>result.json()).then((result)=> {
@@ -94,14 +137,14 @@
                     <td>${element.name}</td>
                             <td>${element.email}</td>
                             <td>${element.username}</td>
-                            <td><button class = 'btn btn-primary'>Edit</td>"
-                            <td><button class = 'btn btn-danger'>Delete</td>"
+                            <td><button class = 'btn btn-primary' onclick="updateform(${element.id})">Edit</td>"</button>
+                            <td><button class = 'btn btn-danger' onclick="deleteform(${element.id})">Delete</td>"</button>
                                 </tr>
                     `
 
             });
             // event.preventDefault() // anathi page refresh nai thay
-            console.log(HTMLCard);
+            // console.log(HTMLCard);
             document.getElementById("DispData").innerHTML = HTMLCard
         })
     }

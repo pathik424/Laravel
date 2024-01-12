@@ -15,18 +15,27 @@ class ApiRegistrationController extends Controller
         return view("Api.Registration");
     }
 
-    public function store(Request $request)
+    public function store(ApiRegistration $apiRegistration ,Request $request)
     {
 
-        // dd($request);
 
-        ApiRegistration::create([
-            "name"=> $request->name,
-            "username" => $request->username,
-            "email" => $request->email,
+            $data = new ApiRegistration;
+              $data->name = $request->name;
+              $data->username = $request->username;
+              $data->email = $request->email;
+              $data->save();
+        return redirect('api/registration')->with('message',"Add User Sucessfully");;
+    }
 
-        ]);
-        return redirect('api/registration');
+    function update($id,ApiRegistration $apiRegistration,Request $request){
+        $Res = $apiRegistration::find($id);
+        return $Res;
+    }
+
+    function delete($id,ApiRegistration $apiRegistration,Request $request){
+        $Reso = $apiRegistration::find($id);
+        $Res = $Reso->delete();
+        return $Reso;
     }
 
     public function apidata(ApiRegistration $apiRegistration)

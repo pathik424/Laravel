@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ApiRegistrationController;
 use App\Http\Controllers\aproduct;
 use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\Backend\aproduct\aproductcontroller;
@@ -93,6 +94,9 @@ Route::post('cart', [CartController::class, 'addToCart']);
 Route::post('remove', [CartController::class, 'removeCart']);
 Route::post('clear', [CartController::class, 'clearAllCart']);
 
+// API
 
+// Route::get('admin/registration',[ApiRegistrationController::class,'index']);
+// Route::post('/registration',[ApiRegistrationController::class,'store']);
 
 

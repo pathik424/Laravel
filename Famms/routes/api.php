@@ -30,5 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::any('/registration',[ApiRegistrationController::class,'index']);
 Route::post('/registration',[ApiRegistrationController::class,'store']);
+Route::get('/updatereg/{id}',[ApiRegistrationController::class,'update']);
+Route::get('/deletereg/{id}',[ApiRegistrationController::class,'delete']);
 // Route::get('/regapi',[ApiRegistrationController::class,'apidata']);
 Route::any('/regapi',[ApiRegistrationController::class,'apidata']);
