@@ -23,8 +23,9 @@ class ApiRegistrationController extends Controller
               $data->name = $request->name;
               $data->username = $request->username;
               $data->email = $request->email;
-              $data->save();
-        return redirect('api/registration')->with('message',"Add User Sucessfully");;
+              $dataRes = $data->save();
+              return $dataRes;
+        // return redirect('api/registration')->with('message',"Add User Sucessfully");;
     }
 
     function update($id,ApiRegistration $apiRegistration,Request $request){

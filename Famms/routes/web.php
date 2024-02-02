@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\pathik\cartcontroller;
 use App\Http\Controllers\Backend\pathik\pathikcontroller;
 use App\Http\Controllers\Backend\Product\Productcontroller;
 use App\Http\Controllers\Frontend\Home\HomeController;
+use App\Http\Controllers\Resource\ResourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -97,6 +98,13 @@ Route::post('clear', [CartController::class, 'clearAllCart']);
 // API
 
 // Route::get('admin/registration',[ApiRegistrationController::class,'index']);
-// Route::post('/registration',[ApiRegistrationController::class,'store']);
+// Route::get('/registration',[ApiRegistrationController::class,'index']);
+Route::view('/registration','api.Registration');
+
+
+// Resources
+
+Route::resource('/resource', ResourceController::class);
+
 
 

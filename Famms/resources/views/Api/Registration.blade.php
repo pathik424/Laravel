@@ -31,9 +31,9 @@
                <br/><br/>
                <label for="submit"></label>
                <input type="submit" name="submit" id="submit"  value="REGISTER">
-               {{-- <div class ="w-100">
+               <div class ="w-100">
                   <span id ="message" class="alert alert-success"></span>
-               </div> --}}
+               </div>
 
                 <div id="">
                 <table class="table table-striped table-dark">
@@ -64,7 +64,7 @@
 
 function adduser() { // add user function ne form na submit part ma nakhvo onlick
     // alert("called")
-    // event.preventDefault() // anathi page load nai thay
+    event.preventDefault() // anathi page load nai thay
 
     // create karyu JS
     let regapi = {};
@@ -72,7 +72,7 @@ function adduser() { // add user function ne form na submit part ma nakhvo onlic
     regapi ['email'] = document.getElementById("email").value;
     regapi ['username'] = document.getElementById("username").value;
 
-    // console.log(regapi);
+    console.log(regapi);
 
     fetch("http://localhost:8000/api/registration",{
 
@@ -80,15 +80,11 @@ function adduser() { // add user function ne form na submit part ma nakhvo onlic
         headers:{
             "Content-Type": "application/json",
              },
-             body: JSON.stringify({
-                    name: regapi,
-                    username: regapi,
-                    email: regapi,
-                })
+             body: JSON.stringify(regapi)
             }).then((result) =>result.json()).then((result)=> {
-                console.log(result.length);
+                console.log(result);
                 // console.log("result");
-                // document.getElementById("message").innerHTML = ""
+                // document.getElementById("message").innerHTML = "Sucess"
 
                 // clear thai jase after registration field badhi j field clear ane reload empty thai jase submit pachi
 
@@ -139,8 +135,7 @@ function adduser() { // add user function ne form na submit part ma nakhvo onlic
                             <td>${element.username}</td>
                             <td><button class = 'btn btn-primary' onclick="updateform(${element.id})">Edit</td>"</button>
                             <td><button class = 'btn btn-danger' onclick="deleteform(${element.id})">Delete</td>"</button>
-                                </tr>
-                    `
+                                </tr>`
 
             });
             // event.preventDefault() // anathi page refresh nai thay
