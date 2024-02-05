@@ -101,37 +101,25 @@
                         <h1 class="design_taital">Our Work Furniture</h1>
                         <p class="design_text">There are many variations of passages of Lorem Ipsum available, but the
                             majority have suffered alteratio</p>
-                        <div class="design_section_2">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="box_main">
-                                        <p class="chair_text">Chair 01</p>
-                                        <div class="image_3" href="#"><img
-                                            src="{{ asset('fassets/images/img-3.png') }}"></div>
-                                            <p class="chair_text">Price $100</p>
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        </div>
-                                    </div>
-                                <div class="col-md-4">
-                                    <div class="box_main">
-                                        <p class="chair_text">Chair 02</p>
-                                        <div class="image_4" href="#"><img
-                                            src="{{ asset('fassets/images/img-4.png') }}"></div>
-                                            <p class="chair_text">Price $100</p>
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                        </div>
-                                    </div>
+
+                            @foreach ($prod as $product)
+
+                            <div class="design_section_2">
+                                <div class="row">
                                     <div class="col-md-4">
-                                        <div class="box_main">
-                                        <p class="chair_text">Table</p>
-                                        <div class="image_4" href="#"><img
-                                            src="{{ asset('fassets/images/img-5.png') }}"></div>
-                                            <p class="chair_text">Price $100</p>
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                    <div class="box_main">
+                                        <p class="chair_text">{{$product->name}}</p>
+                                        <div class="image_3" href="#"><img
+                                            src="{{$product->image}}"></div>
+                                            <p class="chair_text">{{$product->price}}</p>
+                                            <input type="number" id="quantity" name="quantity" min="1" max="5">
+                                            <div class="buy_bt"><a href="{{$product->id}}">Add to cart</a></div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="carousel-item">

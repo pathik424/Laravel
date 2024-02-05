@@ -11,7 +11,7 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','image','visible'];
+    protected $fillable = ['name','description','image','visible','cat_id'];
 
 
    public function category() //a relation apyu category nu brand jode ane Product jode

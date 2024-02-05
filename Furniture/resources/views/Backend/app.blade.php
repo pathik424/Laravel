@@ -70,8 +70,9 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="/admin/category" class="dropdown-item">Category</a>
                             <a href="/admin/brand" class="dropdown-item">Brand</a>
-                            <a href="element.html" class="dropdown-item">Product</a>
+                            <a href="/admin/product" class="dropdown-item">Product</a>
                         </div>
+                        <a href="/admin/pathik" class="nav-item nav-link"><i class="bi bi-person"></i>Main Product</a>
                     </div>
                     {{--
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>

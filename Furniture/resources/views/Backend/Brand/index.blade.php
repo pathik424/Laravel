@@ -24,10 +24,10 @@
               <tr>
 
                 <th>
-                  Brand Name
+                  Category Name
                 </th>
                 <th>
-                  Category Name
+                  Brand Name
                 </th>
                 <th>
                     Description
@@ -45,50 +45,57 @@
             </thead>
             <tbody>
 
-                {{-- @forelse ($category as $iteam ) --}}
 
+
+
+                @forelse ($brand as $iteam)
+
+                {{-- {{ dd($brand) }} --}}
 
 
                 <tr class="table-info">
                     <td>
-                        {{-- {{$iteam->name}} --}}
+                        {{$iteam->category->name}}
                     </td>
                     <td>
-                        {{-- {{$iteam->description}} --}}
+                        {{$iteam->name}}
                     </td>
                     <td>
-                        <img src="" height="100px" width="100px" alt="No image found"></td>
+                        {{$iteam->description}}
+                    </td>
+                    <td>
+                        <img src="/{{$iteam->image}}" height="100px" width="100px" alt="No image found"></td>
 
                         <td>
-                            {{-- @if ($iteam->visible === 0) --}}
+                            @if ($iteam->visible === 0)
                             <h4>
                                 <span class="badge badge-danger ">Not Visible</span>
                             </h4>
-                            {{-- @else --}}
+                            @else
                             <h4>
                                 <span class="badge badge-success ">Visible</span>
                             </h4>
-                            {{-- @endif --}}
+                            @endif
                         </td>
 
                         <td>
-                    <a href="" class="btn btn-sm btn-primary">Update</a>
-                   <Form action="" method="post">
+                    <a href="{{ url ('/admin/edit-brand/' .$iteam->id)}}" class="btn btn-sm btn-primary">Update</a>
+                   <Form action="{{ url ('/admin/delete-brand/' .$iteam->id)}}" method="post">
                     @csrf
                     @method('delete')
-                       <button href="" class="btn btn-sm btn-danger">Delete</button>
+                       <button href= "" class="btn btn-sm btn-danger">Delete</button>
                     </Form>
                 </td>
 
 
-                {{-- @empty --}}
+                @empty
                 <tr>
                     <td colspan="5">No Category Available</td>
                 </tr>
 
 
             </tr>
-            {{-- @endforelse --}}
+            @endforelse
 
             </tbody>
           </table>

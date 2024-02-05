@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\Brand\BrandController;
 use App\Http\Controllers\Backend\Category\CategoryController;
+use App\Http\Controllers\Backend\Pathik\PathikController;
+use App\Http\Controllers\Backend\Product\ProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,19 +55,31 @@ Route::delete("/admin/delete-category/{id}",[CategoryController::class,'destroy'
 
 // Brand
 Route::get("/admin/brand",[BrandController::class,'index']);
-// Route::get("/admin/add-brand",[BrandController::class,'add']);
-// Route::post("/admin/add-brand",[BrandController::class,'store']);
-// Route::get("/admin/edit-brand/{id}",[BrandController::class,'update']);
-// Route::post("/admin/edit-brand/{id}",[BrandController::class,'update_change']);
-// Route::delete("/admin/delete-brand{id}",[BrandController::class,'destroy']);
+Route::get("/admin/add-brand",[BrandController::class,'add']);
+Route::post("/admin/add-brand",[BrandController::class,'store']);
+Route::get("/admin/edit-brand/{id}",[BrandController::class,'update']);
+Route::post("/admin/edit-brand/{id}",[BrandController::class,'update_change']);
+Route::delete("/admin/delete-brand/{id}",[BrandController::class,'destroy']);
 
 // //Product
-// Route::get("/admin/product",[CategoryController::class,'index']);
-// Route::get("/admin/add-product",[CategoryController::class,'add']);
-// Route::post("/admin/add-product",[CategoryController::class,'store']);
+Route::get("/admin/product",[ProductController::class,'index']);
+Route::get("/admin/add-product",[ProductController::class,'add']);
+Route::post("/admin/add-product",[ProductController::class,'store']);
 // Route::get("/admin/edit-product/{id}",[CategoryController::class,'update']);
 // Route::post("/admin/edit-product/{id}",[CategoryController::class,'update_change']);
 // Route::delete("/admin/delete-product{id}",[CategoryController::class,'destroy']);
+
+// Pathik Product
+Route::get("/admin/pathik",[PathikController::class,'index']);
+Route::get("/admin/add-pathik",[PathikController::class,'add']);
+Route::post("/admin/add-pathik",[PathikController::class,'store']);
+
+
+//API
+
+
+
+
 
 
 

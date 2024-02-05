@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Brand;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Brand;
+use App\Models\Backend\Category\Category;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -14,79 +15,89 @@ class BrandController extends Controller
 
         return view('Backend.Brand.index',compact('brand'));
     }
-    // public function add()
-    // {
-    //     return view('Backend.Category.add');
-    // }
-    // public function store(Request $request)
-    // {
-    //     // dd($request);
+    public function add()
+    {
 
-    //     if($request->hasFile("image"))
-    //     {
+        $cat = Category::all();
 
-    //         $file = $request->file("image");
-    //         //  dd($file);
-    //          $ext = $file->getClientOriginalExtension(); // jpg hase je image type hase e automatic define thai jase
-    //          $image = 'upload/category/';
-    //          $source = $image. time(). '.'.$ext;
-    //          $file->move($image,$source);
-    //         // dd($image);
-    //     }
+        return view('Backend.Brand.add',compact('cat'));
+    }
+    public function store(Request $request)
+    {
+        // dd($request);
 
-    //     Category::create([
-    //         "name"=> $request->name,
-    //         "description"=> $request->description,
-    //         "visible"=> $request->visible,
-    //         "image"=> $source,
+        if($request->hasFile("image"))
+        {
 
-    //     ]);
-    //     return redirect('admin/category')->with('message',"Category added successfully");
+            $file = $request->file("image");
+            //  dd($file);
+             $ext = $file->getClientOriginalExtension(); // jpg hase je image type hase e automatic define thai jase
+             $image = 'upload/brand/';
+             $source = $image. time(). '.'.$ext;
+             $file->move($image,$source);
+            // dd($image);
+        }
 
-    // }
-    // public function update($id)
-    // {
-    //     $edit = category::findOrFail($id); // a jena par click karso update button ena par id throuugh click thase
+        Brand::create([
+            "name"=> $request->name,
+            "cat_id"=> $request->cat_id,
+            "description"=> $request->description,
+            "visible"=> $request->visible,
+            "image"=> $source,
 
-    //     return view('Backend.Category.edit',compact('edit'));
-    // }
-    // public function update_change(Request $request, $id)
-    // {
-    //     $update = category::findOrFail($id); // a jena par click karso update button ena par id throuugh click thase
+        ]);
+        return redirect('admin/brand')->with('Brand',"Brand added successfully");
 
-    //     // update ni query
+    }
+    public function update($id)
+    {
 
-    //     if($request->hasFile('image')) // a hasfile if ma etle nakhyu bcz kadach update pachi image change na karvi hoy to su update kariye pan image change na karvi hoy to
-    // {
+        $categories = category::all();
 
-    //     $file = $request->file("image");
-    //     //  dd($file);
-    //      $ext = $file->getClientOriginalExtension(); // jpg hase je image type hase e automatic define thai jase
-    //      $image = 'upload/category/';
-    //      $source = $image. time(). '.'.$ext;
-    //      $file->move($image,$source);
 
-    //      $update->name = $request->name;
-    //      $update->description = $request->description;
-    //      $update->visible = $request->visible;
-    //      $update->image = $source;
-    //      $update->save();
+        $edit = Brand::findOrFail($id); // a jena par click karso update button ena par id throuugh click thase
 
-    // }
-    // $update->name = $request->name;
-    // $update->description = $request->description;
-    // $update->visible = $request->visible;
-    // // $update->image = $source;
-    // $update->save();
+        return view('Backend.Brand.edit',compact('edit','categories'));
+    }
+    public function update_change(Request $request, $id)
+    {
+        $update = Brand::findOrFail($id); // a jena par click karso update button ena par id throuugh click thase
 
-    // return redirect('admin/category')->with('update',"Category update successfully");
+        // update ni query
 
-    // }
-    // public function destroy(Request $request, $id)
-    // {
-    //    $data = Category::findOrFail($id);
-    //    $data->delete();
-    // //    dd($data);
-    //    return redirect('admin/category')->with('delete',"Category delete successfully");
-    // }
+        if($request->hasFile('image')) // a hasfile if ma etle nakhyu bcz kadach update pachi image change na karvi hoy to su update kariye pan image change na karvi hoy to
+    {
+
+        $file = $request->file("image");
+        //  dd($file);
+         $ext = $file->getClientOriginalExtension(); // jpg hase je image type hase e automatic define thai jase
+         $image = 'upload/brand/';
+         $source = $image. time(). '.'.$ext;
+         $file->move($image,$source);
+
+         $update->name = $request->name;
+         $update->cat_id = $request->cat_id;
+         $update->description = $request->description;
+         $update->visible = $request->visible;
+         $update->image = $source;
+         $update->save();
+
+    }
+    $update->name = $request->name;
+    $update->cat_id = $request->cat_id;
+    $update->description = $request->description;
+    $update->visible = $request->visible;
+    // $update->image = $source;
+    $update->save();
+
+    return redirect('admin/brand')->with('update',"Category update successfully");
+
+    }
+    public function destroy(Request $request, $id)
+    {
+       $data = Brand::findOrFail($id);
+       $data->delete();
+    //    dd($data);
+       return redirect('admin/brand')->with('delete',"Category delete successfully");
+    }
 }

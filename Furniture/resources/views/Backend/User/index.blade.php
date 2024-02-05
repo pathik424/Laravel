@@ -36,6 +36,20 @@
     @endif
 
 
+    {{--For Search Option--}}
+
+    <Form action="">
+        <div class = "form-group" class="col-9">
+            <input type="search" name="search" class="form-control" placeholder="search by name" value="{{$search}}">
+        </div>
+        <button class="btn btn-primary">Search</button>
+        <a href={{url('/admin/users')}}>
+            <button class="btn btn-primary" type="button">Reset</button>
+        </a>
+    </Form>
+
+    {{--For Search Option--}}
+
                 <div class="card-body">
                     <a href="/admin/add-users" class="btn btn-primary mb-4">
                             Add Users
@@ -77,7 +91,18 @@
 
                     </tbody>
                     @endforeach
+
                 </table>
+
+                {{--For Pagination--}}
+                <div class="row">
+                    {{$pag->links()}}
+                </div>
+                {{--For Pagination--}}
+
+
+
+
             </div>
         </div>
 

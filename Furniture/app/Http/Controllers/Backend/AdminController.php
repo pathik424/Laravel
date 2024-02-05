@@ -12,11 +12,22 @@ class AdminController extends Controller
     {
         return view("Backend.Home.home");
     }
-    public function user()
+    public function user(request $request)
     {
-        $user = User::all();
+        $search = $request['search'] ?? "";
+        if ($search != "") {
+            //Where
+            $user = User::where('username', 'LIKE', "%$search%")->orwhere('email', 'LIKE', "%$search%")->get(); // For Search Option
 
-        return view("Backend.User.index",compact('user'));
+            // $user = User::where('username', '=', "%$search%")->orwhere('email', '=', "%$search%")->get(); // CHange Only "=" chee ema khali same search karvu pade "LIKE" ma ena jevu hot to search thai jase
+        } else {
+
+            $user = User::all();
+        }
+
+        // $user = User::paginate(3); // For Pagination // go to  users index file
+
+        return view("Backend.User.index",compact('user','search',));
     }
 
     public function add_user()
