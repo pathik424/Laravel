@@ -43,6 +43,7 @@
                     <td>
                         {{ $user->state }}
                     </td>
+
                     <td>
                        <a href="{{route ('view.user', $user->id)}}" class="btn btn-primary btn-sm">View</a>
                     </td>
