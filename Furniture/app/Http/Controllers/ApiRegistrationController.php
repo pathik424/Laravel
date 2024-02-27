@@ -9,7 +9,7 @@ class ApiRegistrationController extends Controller
 {
     public function index()
     {
-             $users = pathik::all();
+             $users = pathik::all('id');
         return response()->json([$users]);
     }
 }

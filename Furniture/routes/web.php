@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\Ajax\AjaxController;
 use App\Http\Controllers\Backend\Brand\BrandController;
 use App\Http\Controllers\Backend\Category\CategoryController;
 use App\Http\Controllers\Backend\Pathik\PathikController;
@@ -37,6 +38,7 @@ Route::get("/logout",[AuthController::class,'logout']);
 // Admin
 Route::get("/admin/dashboard",[AdminController::class,'index']);
 Route::get("/admin/users",[AdminController::class,'user']);
+Route::post("/filter",[AdminController::class,'filter']);
 Route::get("/admin/add-users",[AdminController::class,'add_user']);
 Route::post("/admin/add-users",[AdminController::class,'store_user']);
 Route::get("/admin/edit-users/{id}",[AdminController::class,'update_user']);
@@ -73,9 +75,25 @@ Route::post("/admin/add-product",[ProductController::class,'store']);
 Route::get("/admin/pathik",[PathikController::class,'index']);
 Route::get("/admin/add-pathik",[PathikController::class,'add']);
 Route::post("/admin/add-pathik",[PathikController::class,'store']);
+// Route::post("/admin/add-pathik",[PathikController::class,'store']);
 
 
-//API
+//Ajax
+Route::get("/add-student",function(){
+    return view('Backend.AJax.form');
+});
+// Route::get("/add-student",[AjaxController::class,'viewform']);
+Route::post("/add-student",[AjaxController::class,'AddStudent'])->name('AddStudent');
+
+
+Route::get("/get-students",function(){
+    return view('Backend.AJax.students');
+});
+Route::get("/get-all-students",[AjaxController::class,'getStudents'])->name('getStudents');
+
+
+
+
 
 
 

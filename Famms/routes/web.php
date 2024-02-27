@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ajax\EmployeeController;
 use App\Http\Controllers\api\ApiRegistrationController;
 use App\Http\Controllers\aproduct;
 use App\Http\Controllers\authcontroller;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Backend\pathik\cartcontroller;
 use App\Http\Controllers\Backend\pathik\pathikcontroller;
 use App\Http\Controllers\Backend\Product\Productcontroller;
 use App\Http\Controllers\Frontend\Home\HomeController;
+use App\Http\Controllers\query\QueryController;
 use App\Http\Controllers\Resource\ResourceController;
 use Illuminate\Support\Facades\Route;
 
@@ -102,9 +104,26 @@ Route::post('clear', [CartController::class, 'clearAllCart']);
 Route::view('/registration','api.Registration');
 
 
-// Resources
 
-Route::resource('/resource', ResourceController::class);
+
+
+// AJax Colling
+
+// Route::get('/', function () {
+//     return view('employee');
+// });
+// Route::post('employee-add', [EmployeeController::class, 'employee_add']);
+// Route::get('employee-view', [EmployeeController::class, 'employee_view']);
+// Route::get('employee-delete', [EmployeeController::class, 'employee_delete']);
+// Route::post('employee-edit', [EmployeeController::class, 'employee_edit']);
+// Route::get('employee-list', [EmployeeController::class, 'employee_list']);
+
+
+// Query Builder
+
+Route::get('/myuser', [QueryController::class, 'showUser']);
+
+Route::get('/user/{id}', [QueryController::class, 'singleuser'])->name("view.user");
 
 
 

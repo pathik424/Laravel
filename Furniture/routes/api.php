@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/product',[ApiRegistrationController::class,'index']);
+Route::any('/product',[ApiRegistrationController::class,'index']);

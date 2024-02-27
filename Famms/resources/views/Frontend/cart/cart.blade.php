@@ -1,94 +1,312 @@
+<body>
+    <div id="w">
+      <header id="title">
+        <h1>Our Pathik Cart</h1>
+      </header>
+      <div id="page">
+        <table id="cart">
+          <thead>
+            <tr>
+              <th class="first">Image</th>
+              <th class="second">Qty</th>
+              <th class="third">Product</th>
+              <th class="fourth">Price</th>
+              <th class="fifth">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- shopping cart contents -->
+            <tr class="productitm">
+              <!-- http://www.inkydeals.com/deal/ginormous-bundle/ -->
+              <td><img src="https://i.imgur.com/8goC6r6.png" class="thumb"></td>
+              <td><input type="number" value="1" min="0" max="99" class="qtyinput"></td>
+              <td>Design Bundle Package</td>
+              <td>$79.00</td>
+              <td><span class="remove"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></span></td>
+            </tr>
+            <tr class="productitm">
+              <!-- http://www.amazon.com/Stuff-My-Cat-The-Book/dp/0811855384 -->
+              <td><img src="https://i.imgur.com/RkzoXzZ.png" class="thumb"></td>
+              <td><input type="number" value="1" min="0" max="99" class="qtyinput"></td>
+              <td>Stuff on my Cat: The Book</td>
+              <td>$8.95</td>
+              <td><span class="remove"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></span></td>
+            </tr>
+            <tr class="productitm">
+              <!-- http://www.amazon.com/SpongeBob-SquarePants-The-First-Episodes/dp/B002DYJTVW -->
+              <td><img src="https://i.imgur.com/vZ26Uwy.png" class="thumb"></td>
+              <td><input type="number" value="1" min="0" max="99" class="qtyinput"></td>
+              <td>SpongeBob's First 100 Episodes</td>
+              <td>$75.00</td>
+              <td><span class="remove"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></span></td>
+            </tr>
+            <tr class="productitm">
+              <!-- http://www.barnesandnoble.com/w/javascript-and-jquery-david-sawyer-mcfarland/1100405042 -->
+              <td><img src="https://i.imgur.com/tEdRnz4.png" class="thumb"></td>
+              <td><input type="number" value="1" min="0" max="99" class="qtyinput"></td>
+              <td>JavaScript &amp; jQuery: The Missing Manual</td>
+              <td>$27.50</td>
+              <td><span class="remove"><img src="https://i.imgur.com/h1ldGRr.png" alt="X"></span></td>
+            </tr>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800">
-            {{ __('Cart') }}
-        </h2>
-    </x-slot>
-            <main class="my-8">
-              <div class="container px-6 mx-auto">
-                  <div class="flex justify-center my-6">
-                      <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
-                        {{-- @if ($message = Session::get('success'))
-                            <div class="p-4 mb-3 bg-green-400 rounded">
-                                <p class="text-green-800">{{ $message }}</p>
-                            </div> --}}
-                        {{-- @endif --}}
-                          <h3 class="text-3xl font-bold">Carts</h3>
-                        <div class="flex-1">
-                          <table class="w-full text-sm lg:text-base" cellspacing="0">
-                            <thead>
-                              <tr class="h-12 uppercase">
-                                <th class="hidden md:table-cell"></th>
-                                <th class="text-left">Description</th>
-                                <th class="pl-5 text-left lg:text-right lg:pl-0">
-                                  <span class="lg:hidden" title="Quantity">Qtd</span>
-                                  <span class="hidden lg:inline">Quantity</span>
-                                </th>
-                                <th class="hidden text-right md:table-cell"> price</th>
-                                <th class="hidden text-right md:table-cell"> Remove </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($cartItems as $item)
-                              <tr>
-                                <td class="hidden pb-4 md:table-cell">
-                                  <a href="#">
-                                    <img src="{{ $item->attributes->image }}" class="w-20 rounded" alt="Thumbnail">
-                                  </a>
-                                </td>
-                                <td>
-                                  <a href="#">
-                                    <p class="mb-2 md:ml-4 text-purple-600 font-bold">{{ $item->name }}</p>
+            <!-- tax + subtotal -->
+            <tr class="extracosts">
+              <td class="light">Shipping &amp; Tax</td>
+              <td colspan="2" class="light"></td>
+              <td>$35.00</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr class="totalprice">
+              <td class="light">Total:</td>
+              <td colspan="2">&nbsp;</td>
+              <td colspan="2"><span class="thick">$225.45</span></td>
+            </tr>
 
-                                  </a>
-                                </td>
-                                <td class="justify-center mt-6 md:justify-end md:flex">
-                                  <div class="h-10 w-28">
-                                    <div class="relative flex flex-row w-full h-8">
-
-                                      <form action="" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id}}" >
-                                      <input type="text" name="quantity" value="{{ $item->quantity }}"
-                                      class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
-                                      <input type="text" name="image" value="{{ $item->image }}"
-                                      class="w-16 text-center h-6 text-gray-800 outline-none rounded border border-blue-600" />
-                                      <button class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Update</button>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td class="hidden text-right md:table-cell">
-                                  <span class="text-sm font-medium lg:text-base">
-                                      ${{ $item->price }}
-                                  </span>
-                                </td>
-                                <td class="hidden text-right md:table-cell">
-                                  <form action="{{ route('cart.remove') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" value="{{ $item->id }}" name="id">
-                                    <button class="px-4 py-2 text-white bg-red-600 shadow rounded-full">x</button>
-                                </form>
-
-                                </td>
-                              </tr>
-                              @endforeach
-
-                            </tbody>
-                          </table>
-                          <div>
-                           {{-- Total: ${{ cart::getTotal() }} --}}
-                          </div>
-                          <div>
-                            <form action="" method="POST">
-                              @csrf
-                              <button class="px-6 py-2 text-sm  rounded shadow text-red-100 bg-red-500">Clear Carts</button>
-                            </form>
-                          </div>
+            <!-- checkout btn -->
+            <tr class="checkoutrow">
+              <td colspan="5" class="checkout"><button id="submitbtn">Checkout Now!</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 
 
-                        </div>
-                      </div>
-                    </div>
-              </div>
-          </main>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Fredoka+One);
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html { overflow-y: scroll; }
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 62.5%;
+  line-height: 1;
+  color: #414141;
+  background: #caccf7 url('https://i.imgur.com/Syv2IVk.png'); /* https://subtlepatterns.com/old-map/ */
+  padding: 25px 0;
+}
+
+::selection { background: #bdc0e8; }
+::-moz-selection { background: #bdc0e8; }
+::-webkit-selection { background: #bdc0e8; }
+
+br { display: block; line-height: 1.6em; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ol, ul { list-style: none; }
+
+input, textarea {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+strong, b { font-weight: bold; }
+em, i { font-style: italic; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100%; }
+
+h1 {
+  font-family: 'Fredoka One', Helvetica, Tahoma, sans-serif;
+  color: #fff;
+  text-shadow: 1px 2px 0 #7184d8;
+  font-size: 3.5em;
+  line-height: 1.1em;
+  padding: 6px 0;
+  font-weight: normal;
+  text-align: center;
+}
+
+
+/* page structure */
+#w {
+  display: block;
+  width: 600px;
+  margin: 0 auto;
+}
+
+#title {
+  display: block;
+  width: 100%;
+  background: #95a6d6;
+  padding: 10px 0;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-topleft: 6px;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+#page {
+  display: block;
+  background: #fff;
+  padding: 15px 0;
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/** cart table **/
+#cart {
+  display: block;
+  border-collapse: collapse;
+  margin: 0;
+  width: 100%;
+  font-size: 1.2em;
+  color: #444;
+}
+#cart thead th {
+  padding: 8px 0;
+  font-weight: bold;
+}
+
+#cart thead th.first {
+  width: 175px;
+}
+#cart thead th.second {
+  width: 45px;
+}
+#cart thead th.third {
+  width: 230px;
+}
+#cart thead th.fourth {
+  width: 130px;
+}
+#cart thead th.fifth {
+  width: 20px;
+}
+
+#cart tbody td {
+  text-align: center;
+  margin-top: 4px;
+}
+
+tr.productitm {
+  height: 65px;
+  line-height: 65px;
+  border-bottom: 1px solid #d7dbe0;
+}
+
+
+#cart tbody td img.thumb {
+  vertical-align: bottom;
+  border: 1px solid #ddd;
+  margin-bottom: 4px;
+}
+
+.qtyinput {
+  width: 33px;
+  height: 22px;
+  border: 1px solid #a3b8d3;
+  background: #dae4eb;
+  color: #616161;
+  text-align: center;
+}
+
+tr.totalprice, tr.extracosts {
+  height: 35px;
+  line-height: 35px;
+}
+tr.extracosts {
+  background: #e4edf4;
+}
+
+.remove {
+  /* http://findicons.com/icon/261449/trash_can?id=397422 */
+  cursor: pointer;
+  position: relative;
+  right: 12px;
+  top: 5px;
+}
+
+
+.light {
+  color: #888b8d;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.45);
+  font-size: 1.1em;
+  font-weight: normal;
+}
+.thick {
+  color: #272727;
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+
+/** submit btn **/
+tr.checkoutrow {
+  background: #cfdae8;
+  border-top: 1px solid #abc0db;
+  border-bottom: 1px solid #abc0db;
+}
+td.checkout {
+  padding: 12px 0;
+  padding-top: 20px;
+  width: 100%;
+  text-align: right;
+}
+
+
+/* https://codepen.io/guvootes/pen/eyDAb */
+#submitbtn {
+  width: 150px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  margin: 0 0 10px 0;
+  font-size: 1.3em;
+  letter-spacing: 0.05em;
+  font-family: Arial, Tahoma, sans-serif;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  overflow: hidden;
+  border-bottom: 1px solid #0071ff;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #66aaff), color-stop(100%, #4d9cff));
+  background-image: -webkit-linear-gradient(#66aaff, #4d9cff);
+  background-image: -moz-linear-gradient(#66aaff, #4d9cff);
+  background-image: -o-linear-gradient(#66aaff, #4d9cff);
+  background-image: linear-gradient(#66aaff, #4d9cff);
+}
+#submitbtn:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d9cff), color-stop(100%, #338eff));
+  background-image: -webkit-linear-gradient(#4d9cff, #338eff);
+  background-image: -moz-linear-gradient(#4d9cff, #338eff);
+  background-image: -o-linear-gradient(#4d9cff, #338eff);
+  background-image: linear-gradient(#4d9cff, #338eff);
+}
+#submitbtn:active {
+  border-bottom: 0;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #338eff), color-stop(100%, #4d9cff));
+  background-image: -webkit-linear-gradient(#338eff, #4d9cff);
+  background-image: -moz-linear-gradient(#338eff, #4d9cff);
+  background-image: -o-linear-gradient(#338eff, #4d9cff);
+  background-image: linear-gradient(#338eff, #4d9cff);
+  -webkit-box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
+  box-shadow: inset 0 1px 3px 1px rgba(0,0,0,0.25);
+}
+  </style>
