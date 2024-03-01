@@ -7,7 +7,7 @@
     <div class="main-banner header-text">
         <div class="container-fluid">
             <div class="owl-banner owl-carousel">
-                @foreach ($post as $posts)
+                @foreach ($post as $id => $posts)
                     <div class="item">
                         <img src="{{ $posts->image }}" alt="">
                         <div class="item-content">
@@ -15,13 +15,15 @@
                                 <div class="meta-category">
                                     <span></span>{{ $posts->name }}
                                 </div>
-                                <a href="post-details.html">
+                                {{-- <a href="post-details.html">
                                     <h4>{{ $posts->body }}</h4>
-                                </a>
+                                </a> --}}
+                                <a href="{{route ('full.post', $posts->id)}}" class="btn btn-primary btn-sm">View</a>
+
                                 <ul class="post-info">
-                                    <li><a href="#">{{ $posts->postedby }}</a></li>
-                                    <li><a href="#">{{ $posts->created_at }}</a></li>
-                                    <li><a href="#">12 Comments</a></li>
+                                    {{-- <li><a href="#">{{ $posts->postedby }}</a></li> --}}
+                                    {{-- <li><a href="#">{{ $posts->created_at }}</a></li> --}}
+                                    {{-- <li><a href="#">12 Comments</a></li> --}}
                                 </ul>
                             </div>
                         </div>

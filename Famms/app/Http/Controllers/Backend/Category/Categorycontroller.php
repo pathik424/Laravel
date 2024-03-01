@@ -14,6 +14,9 @@ class Categorycontroller extends Controller
 
         $category = category::all();
 
+        $category = category::orderBy('name', 'asc')->get();
+
+
         return view("Backend.category.category",compact('category'));
 
     }

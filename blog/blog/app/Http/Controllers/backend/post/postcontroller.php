@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend\post;
 use App\Http\Controllers\Controller;
 use App\Models\post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class postcontroller extends Controller
 {
@@ -94,5 +95,19 @@ class postcontroller extends Controller
         $del->delete();
         // dd($request);
         return redirect('admin/post')->with('delete','delete successfully');
+    }
+
+    public function singleblog(string $id)
+    {
+
+        $single = DB::table('posts')->where('id',$id)->get();
+
+        return view ("frontend.fullblog.fullblog",compact('single'));
+
+        // $single = post::findorfail($id);
+        // $single = post::all();
+        // dd($single);
+
+        // return view("frontend.fullblog.fullblog",compact("single"));
     }
 }

@@ -39,6 +39,7 @@ Route::post("/admin/update-post/{id}",[postcontroller::class,'postupdate_change'
 Route::delete("/admin/delete-post/{id}",[postcontroller::class,'destroy']);
 
 
+Route::get("/singleblog/{id}",[postcontroller::class,'singleblog'])->name('full.post');
 // Product
 
 

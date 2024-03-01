@@ -14,7 +14,12 @@ class QueryController extends Controller
 
 
  // 1. Show For All Details
-        // $users = DB::table('users')->get();
+        $users = DB::table('users')->get();
+
+        //pagination
+        $users = DB::table('users')
+        ->orderBy('age','desc')
+        ->simplePaginate(5);
 
 
 // 2. Where Condition
@@ -166,19 +171,19 @@ class QueryController extends Controller
 
 // 19. max/min/avg/sum
 
-        $users = DB::table('users')
+        // $users = DB::table('users')
         // ->min('age');
         // ->max('age');
         // ->avg('age');
-        ->sum('age');
-        return $users; // ketla users che e number avse
+        // ->sum('age');
+        // return $users; // ketla users che e number avse
 
 
         // Json ma data Joito hoy to return $user karvu
 
 
         // data je che e Compact Karayu
-        // return view ('query/allusers',['data'=> $users]);
+        return view ('query/allusers',['data'=> $users]);
 
 
 
@@ -195,4 +200,71 @@ class QueryController extends Controller
 
 
     }
-}
+
+    //insert
+
+    public function addUser()
+    {
+        return view ('query/adduser');
+    }
+
+    public function insertuser(request $request)
+    {
+        $user = DB::table('users')
+        ->insert(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'username' => $request->username,
+                'age' => $request->age,
+                'state' => $request->state,
+                'password' => $request->password,
+                ]
+            );
+
+            return redirect('/myuser');
+            // dd($request);
+        }
+
+        public function updateUser(string $id)
+        {
+            // $users = DB::table('users')->where('id',$id)->get();
+            $users = DB::table('users')->find($id);
+            // return $users;
+            return view ('query/updateuser',['data'=> $users]);
+        }
+
+        public function updatepage(request $request,$id)
+        {
+            // return $request;
+            $user = DB::table('users')
+            ->where('id',$id)
+            ->update(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'username' => $request->username,
+                    'age' => $request->age,
+                    'state' => $request->state,
+                    'password' => $request->password,
+                    ]
+                );
+                return redirect('/myuser');
+            }
+            // public function DeleteUser(string $id)
+            // {
+        //     $users = DB::table('users')->where('id',$id)->get();
+        //     return $users;
+        //     // return view ('query/updateuser',['data'=> $user]);
+        //     // dd('inside if');
+        // }
+
+        public function deleteuser(request $request,string $id)
+        {
+            $user = DB::table('users')
+            ->where ('id',$id)
+            ->delete();
+            return $user;
+            // return redirect('/myuser');
+        }
+    }

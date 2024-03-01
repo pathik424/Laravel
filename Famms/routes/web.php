@@ -121,9 +121,14 @@ Route::view('/registration','api.Registration');
 
 // Query Builder
 
-Route::get('/myuser', [QueryController::class, 'showUser']);
-
+Route::get('/myuser', [QueryController::class, 'showUser'])->name("my.user");
 Route::get('/user/{id}', [QueryController::class, 'singleuser'])->name("view.user");
 
 
+Route::get('/adduser', [QueryController::class,'addUser'])->name("add.user");
+Route::post('/adduser', [QueryController::class,'insertuser']);
 
+Route::get('/updateuser/{id}', [QueryController::class,'updateUser'])->name("update.user");
+Route::post('/updateuser/{id}', [QueryController::class,'updatepage']);
+
+Route::delete('/deleteuser/{id}', [QueryController::class,'deleteuser'])->name("delete.user");
