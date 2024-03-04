@@ -1,155 +1,146 @@
-
-{{-- dd($request); --}}
-
-{{-- [[dd($request)]] --}}
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
     <meta charset="UTF-8">
-    <title>Register Fuitkha</title>
-    <link rel="stylesheet" href="assets/register/style.css">
-
-</head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Famms Registration </title>
+    <link rel="stylesheet" href="style.css">
+   </head>
 <body>
-    <!-- partial:index.partial.html -->
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <title>Slide Navbar</title>
-        <link rel="stylesheet" type="text/css" href="slide navbar style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    </head>
-
-    <body>
-        <div class="main" style="">
-            <input type="checkbox" id="chk" aria-hidden="true">
-
-            <div class="signup">
-                <form action="" method="post" style="">
-                    @csrf
-                        {{-- a token mate kam ma avse jo different user same time e same vastu login kare to --}}
-                    <label for="chk" aria-hidden="true">Sign up</label>
-                    <input type="text" name="name" placeholder="Full Name" required="">
-                    <input type="text" placeholder="User Name" name="username" required="">
-                    <input type="email" name="email" placeholder="Email" required="">
-                    <input type="password" name="password" placeholder="Password" required="">
-                    <button name="signin">Sign up</button>
-                </form>
-            </div>
-
-        </div>
-
-    </html>
-    <!-- partial -->
-
+  <div class="wrapper">
+    <h2>Famms Registration</h2>
+    <form action="#" method="post">
+        @csrf
+      <div class="input-box">
+        <input type="text" placeholder="Enter your name" name="name"required>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Enter your username" name='username' required>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Enter your email" name="email" required>
+      </div>
+      <div class="input-box">
+        <input type="numbers" placeholder="Enter your age" name="age" required>
+      </div>
+      <div class="input-box">
+        <input type="text" placeholder="Enter your city" name="city" required>
+      </div>
+      <div class="input-box">
+        <input type="password" placeholder="Create password" name="password" required>
+      </div>
+      {{-- <div class="policy">
+        <input type="checkbox">
+        <h3>I accept all terms & condition</h3>
+      </div> --}}
+      <div class="input-box button">
+        <input type="Submit" value="Register Now">
+      </div>
+      <div class="text">
+        <h3>Already have an account? <a href="/login">Login now</a></h3>
+      </div>
+    </form>
+  </div>
 </body>
-
 </html>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        font-family: 'Jost', sans-serif;
-        background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-    }
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4070f4;
+}
+.wrapper{
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  padding: 34px;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.wrapper h2{
+  position: relative;
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+.wrapper h2::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 28px;
+  border-radius: 12px;
+  background: #4070f4;
 
-    .main {
-        width: 350px;
-        height: 500px;
-        background: red;
-        overflow: hidden;
-        background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
-        border-radius: 10px;
-        box-shadow: 5px 20px 50px #000;
-    }
 
-    #chk {
-        display: none;
-    }
-
-    .signup {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-
-    label {
-        color: #fff;
-        font-size: 2.3em;
-        justify-content: center;
-        display: flex;
-        margin: 60px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: .5s ease-in-out;
-    }
-
-    input {
-        width: 60%;
-        height: 20px;
-        background: #e0dede;
-        justify-content: center;
-        display: flex;
-        margin: 20px auto;
-        padding: 10px;
-        border: none;
-        outline: none;
-        border-radius: 5px;
-    }
-
-    button {
-        width: 60%;
-        height: 40px;
-        margin: 10px auto;
-        justify-content: center;
-        display: block;
-        color: #fff;
-        background: #573b8a;
-        font-size: 1em;
-        font-weight: bold;
-        margin-top: 20px;
-        outline: none;
-        border: none;
-        border-radius: 5px;
-        transition: .2s ease-in;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: #6d44b8;
-    }
-
-    .login {
-        height: 460px;
-        background: #eee;
-        border-radius: 60% / 10%;
-        transform: translateY(-180px);
-        transition: .8s ease-in-out;
-    }
-
-    .login label {
-        color: #573b8a;
-        transform: scale(.6);
-    }
-
-    #chk:checked~.login {
-        transform: translateY(-500px);
-    }
-
-    #chk:checked~.login label {
-        transform: scale(1);
-    }
-
-    #chk:checked~.signup label {
-        transform: scale(.6);
-    }
+}
+.wrapper form{
+  margin-top: 30px;
+}
+.wrapper form .input-box{
+  height: 52px;
+  margin: 18px 0;
+}
+form .input-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  border: 1.5px solid #C7BEBE;
+  border-bottom-width: 2.5px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.input-box input:focus,
+.input-box input:valid{
+  border-color: #4070f4;
+}
+form .policy{
+  display: flex;
+  align-items: center;
+}
+form h3{
+  color: #707070;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+.input-box.button input{
+  color: #fff;
+  letter-spacing: 1px;
+  border: none;
+  background: #4070f4;
+  cursor: pointer;
+}
+.input-box.button input:hover{
+  background: #0e4bf1;
+}
+form .text h3{
+ color: #333;
+ width: 100%;
+ text-align: center;
+}
+form .text h3 a{
+  color: #4070f4;
+  text-decoration: none;
+}
+form .text h3 a:hover{
+  text-decoration: underline;
+}
 </style>
-{{-- @endsection --}}

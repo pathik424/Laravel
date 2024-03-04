@@ -1,20 +1,14 @@
 <?php
 
-use App\Http\Controllers\ajax\EmployeeController;
-use App\Http\Controllers\api\ApiRegistrationController;
-use App\Http\Controllers\aproduct;
-use App\Http\Controllers\authcontroller;
-use App\Http\Controllers\Backend\aproduct\aproductcontroller;
-use App\Http\Controllers\Backend\Brand\brandconroller;
-use App\Http\Controllers\Backend\Category\Categorycontroller;
-use App\Http\Controllers\Backend\Home\homecontroller as HomeHomecontroller;
-use App\Http\Controllers\Backend\pathik\cartcontroller;
-use App\Http\Controllers\Backend\pathik\pathikcontroller;
-use App\Http\Controllers\Backend\Product\Productcontroller;
-use App\Http\Controllers\Frontend\Home\HomeController;
-use App\Http\Controllers\query\QueryController;
-use App\Http\Controllers\Resource\ResourceController;
+use App\Http\Controllers\Backend\Cart\CartController;
+use App\Http\Controllers\Backend\Contact\ContactController;
+use App\Http\Controllers\Backend\EyeProduct\ProductCOntroller;
+use App\Http\Controllers\Backend\Home\BackendHomeController;
+use App\Http\Controllers\Backend\User\UserController;
+use App\Http\Controllers\Frontend\Auth\AuthController;
+use App\Http\Controllers\Frontend\Home\FrontendHomecontroller;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Metadata\Api\HookMethods;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,104 +25,58 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get("/home",[HomeController::class,'index']);
+//Home Page
+Route::get("/home",[FrontendHomecontroller::class,'index']);
 
-//Register
-Route::get("/register",[authcontroller::class,'index'])->middleware('guest'); // middlwear guest thi e thase jyare e login karse tyare e pacho login page ma nai jai sake url change karine
-Route::post("/register",[authcontroller::class,'store']);
+//Register Page
+Route::get("/register",[AuthController::class,'register'])->middleware('guest');
+Route::post("/register",[AuthController::class,'store']);
 
-//Login
-Route::get("/login",[authcontroller::class,'login'])->middleware('guest');  // middlwear guest thi e thase jyare e login karse tyare e pacho login page ma nai jai sake url change karine
-Route::post("/login",[authcontroller::class,'validate_login']);
+//login Page
+Route::get("/login",[AuthController::class,'login'])->middleware('guest');
+Route::post("/login",[AuthController::class,'validate_login']);
 
-//logout
-Route::get("/logout",[authcontroller::class,'logout']);
+//logout page
+Route::get("/logout",[AuthController::class,'logout']);
 
-
-
-//admin
-
-// anu group niche karyu che a example mate rakhyu che
-
-// Route::get("/admin/dashboard",[HomeHomecontroller::class,'index']);
-// Route::get("/admin/category",[Categorycontroller::class,'index']);
-// Route::get("/admin/add-category",[Categorycontroller::class,'add']);
-// Route::post("/admin/add-category",[Categorycontroller::class,'store']);
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-
-    Route::get("/dashboard",[HomeHomecontroller::class,'index']);
-    Route::get("/category",[Categorycontroller::class,'index']);
-    Route::get("/add-category",[Categorycontroller::class,'add']);
-    Route::post("/add-category",[Categorycontroller::class,'store']);
-    Route::get("/edit-category/{id}",[Categorycontroller::class,'update']);
-    Route::put("/edit-category/{id}",[Categorycontroller::class,'update_change']);
-    Route::delete("/delete-category/{id}",[Categorycontroller::class,'destroy']);
-
-    Route::get("/brand",[brandconroller::class,'index']);
-    Route::get("/add-brand",[brandconroller::class,'add']);
-    Route::post("/add-brand",[brandconroller::class,'store']);
-    Route::get("/edit-brand/{id}",[brandconroller::class,'update']);
-    Route::post("/edit-brand/{id}",[brandconroller::class,'update_change']);
-    Route::delete("/delete-brand/{id}",[brandconroller::class,'destroy']);
+//admin page
+Route::get("/admin/dashboard",[BackendHomeController::class,'adminview'])->middleware(['auth','admin']);
+Route::get("/admin/myuser",[UserController::class,'userview']);
+Route::get("/admin/adduser",[UserController::class,'adduser']);
+Route::post("/admin/adduser",[UserController::class,'storeuser']);
+Route::get("/admin/updateuser/{id}",[UserController::class,'updateuser']);
+Route::post("/admin/updateuser/{id}",[UserController::class,'update_changeuserdata']);
+Route::delete("/admin/deleteuser/{id}",[UserController::class,'delete_user']);
 
 
-    Route::get("/product",[Productcontroller::class,'index']);
-    Route::get("/add-product",[Productcontroller::class,'add']);
-    Route::post("/add-product",[Productcontroller::class,'store']);
-
-    // Product Show in Home Page
-
-    Route::get("/pathik",[pathikcontroller::class,'index']);
-    Route::get("/add-pathik",[pathikcontroller::class,'add']);
-    Route::post("/add-pathik",[pathikcontroller::class,'store']);
-    Route::get("/edit-pathik/{id}",[pathikcontroller::class,'update']);
-    Route::post("/edit-pathik/{id}",[pathikcontroller::class,'update_change']);
-    Route::delete("/delete-pathik/{id}",[pathikcontroller::class,'destroy']);
-
-});
-
-    // add to cart product
-
-Route::get('cartproducts', [HomeController::class, 'index']);
-Route::get('cart', [cartcontroller::class, 'cartList']);
-Route::post('cart', [CartController::class, 'addToCart']);
-// Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart']);
-Route::post('clear', [CartController::class, 'clearAllCart']);
-
-// API
-
-// Route::get('admin/registration',[ApiRegistrationController::class,'index']);
-// Route::get('/registration',[ApiRegistrationController::class,'index']);
-Route::view('/registration','api.Registration');
+//Product
+Route::get("/admin/eyeproduct",[ProductCOntroller::class,'index']);
+Route::get("/admin/add-eyeproduct",[ProductCOntroller::class,'add']);
+Route::post("/admin/add-eyeproduct",[ProductCOntroller::class,'store']);
+Route::get("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update']);
+Route::post("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update_change']);
+Route::delete("/admin/delete-eyeproduct/{id}",[ProductCOntroller::class,'destroy']);
+Route::get("/admin/logout",[UserController::class,'adminlogout']);
 
 
 
+//Cart
+Route::get('/shopping-cart', [CartController::class, 'bookCart'])->name('shopping.cart');
+Route::get('/book/{id}', [CartController::class, 'addBooktoCart'])->name('addbook.to.cart');
+Route::patch('/update-shopping-cart', [CartController::class, 'updateCart'])->name('update.sopping.cart');
+Route::delete('/delete-cart-product', [CartController::class, 'deleteProduct'])->name('delete.cart.product');
+
+//contact
+
+Route::get("/contact",[FrontendHomecontroller::class,'contact']);
+Route::post("/contact",[FrontendHomecontroller::class,'contactstore']);
+Route::get("/admin/contactview",[ContactController::class,'contactview']);
+Route::delete("/admin/delete-contact/{id}",[ContactController::class,'destroy']);
+// Route::get("/admin/add-eyeproduct",[ProductCOntroller::class,'add']);
+// Route::post("/admin/add-eyeproduct",[ProductCOntroller::class,'store']);
+// Route::get("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update']);
+// Route::post("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update_change']);
+// Route::delete("/admin/delete-eyeproduct/{id}",[ProductCOntroller::class,'destroy']);
 
 
-// AJax Colling
 
-// Route::get('/', function () {
-//     return view('employee');
-// });
-// Route::post('employee-add', [EmployeeController::class, 'employee_add']);
-// Route::get('employee-view', [EmployeeController::class, 'employee_view']);
-// Route::get('employee-delete', [EmployeeController::class, 'employee_delete']);
-// Route::post('employee-edit', [EmployeeController::class, 'employee_edit']);
-// Route::get('employee-list', [EmployeeController::class, 'employee_list']);
-
-
-// Query Builder
-
-Route::get('/myuser', [QueryController::class, 'showUser'])->name("my.user");
-Route::get('/user/{id}', [QueryController::class, 'singleuser'])->name("view.user");
-
-
-Route::get('/adduser', [QueryController::class,'addUser'])->name("add.user");
-Route::post('/adduser', [QueryController::class,'insertuser']);
-
-Route::get('/updateuser/{id}', [QueryController::class,'updateUser'])->name("update.user");
-Route::post('/updateuser/{id}', [QueryController::class,'updatepage']);
-
-Route::delete('/deleteuser/{id}', [QueryController::class,'deleteuser'])->name("delete.user");
