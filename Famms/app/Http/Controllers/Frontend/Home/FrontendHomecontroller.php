@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Home;
 use App\Http\Controllers\Controller;
 use App\Models\contact;
 use App\Models\eyeproduct;
+use App\Models\testimonial;
 use Illuminate\Http\Request;
 
 class FrontendHomecontroller extends Controller
@@ -13,8 +14,10 @@ class FrontendHomecontroller extends Controller
        {
 
         $product = eyeproduct::all();
+        $test = testimonial::all();
+        // dd($test);
 
-        return view('Frontend.Home.Home',compact('product'));
+        return view('Frontend.Home.Home',compact('product','test'));
 
        }
 

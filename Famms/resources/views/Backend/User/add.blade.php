@@ -19,22 +19,22 @@
                   <label for="exampleInputUsername1">Name</label>
                   <input type="text" class="form-control"  Name="name" id="exampleInputUsername1" placeholder="Name">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label for="exampleInputUsername1">Username</label>
                   <input type="text" class="form-control" name="username" id="exampleInputUsername1" placeholder="Username">
-                </div>
+                </div> --}}
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
                   <input type="email" class="form-control" Name="email" id="exampleInputEmail1" placeholder="Email">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label for="exampleInputEmail1">City</label>
                   <input type="text" class="form-control" Name="city" id="exampleInputEmail1" placeholder="City">
-                </div>
-                <div class="form-group">
+                </div> --}}
+                {{-- <div class="form-group">
                   <label for="exampleInputEmail1">Age</label>
                   <input type="number" class="form-control" Name="age" id="exampleInputEmail1" placeholder="Age">
-                </div>
+                </div> --}}
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">

@@ -330,7 +330,7 @@
             </div>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">Contact</span>
@@ -339,7 +339,22 @@
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/contactview"> My Contact Us List </a></li>
-                {{-- <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li> --}}
+                {{-- <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+            </ul>
+        </div>
+    </li> --}}
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+              <i class="icon-ban menu-icon"></i>
+              <span class="menu-title">Front Uploadation</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/admin/contactview"> My Contact Us List </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/testimonial"> Testimonial </a></li>
+
               </ul>
             </div>
           </li>

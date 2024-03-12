@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
+
+
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -7,11 +10,20 @@
     <title> Famms Login </title>
     <link rel="stylesheet" href="style.css">
    </head>
-<body>
-  <div class="wrapper">
-    <h2>Famms Login</h2>
-    <form action="#" method="POST">
-        @csrf
+
+
+   <body>
+       <div class="wrapper">
+           <h2>Famms Login</h2>
+
+           @if (session('failed'))
+           <div class="alert alert-danger" role="alert">
+           {{ session('failed') }}
+        </div>
+        @endif
+
+           <form action="#" method="POST">
+               @csrf
       <div class="input-box">
         <input type="text" placeholder="Enter your email" name="email" required>
       </div>
@@ -29,6 +41,14 @@
       <div class="text">
         <h3>Create Your New Account? <a href="/register">Register your account</a></h3>
       </div>
+      <br>
+
+      <div class="flex items-center justify-end mt-4">
+        <a href="{{ url('auth/google') }}">
+            <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
+        </a>
+    </div>
+
     </form>
   </div>
 </body>

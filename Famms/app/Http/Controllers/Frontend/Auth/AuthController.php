@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Myuser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,9 +27,9 @@ class AuthController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->age = $request->age;
-        $user->city = $request->city;
-        $user->username = $request->username;
+        // $user->age = $request->age;
+        // $user->city = $request->city;
+        // $user->username = $request->username;
         $user->password = $request->password;
         $user->save();
         return redirect("/login")->with("success","Signup Succesfully");
@@ -56,19 +57,19 @@ class AuthController extends Controller
             }
             else if(Auth::user()->role_as == 0) //  role as as set karyu login karyu to
             {
-                return redirect('/home')->with('message','Login Success'); // with thi message show thase success or failed
+                return redirect('/dashboard')->with('message','Login Success'); // with thi message show thase success or failed
 
             }
             else //  role as as set karyu login karyu to
             {
-                return redirect('/home')->with('message','Login Success'); // with thi message show thase success or failed
+                return redirect('/dashboard')->with('message','Login Success'); // with thi message show thase success or failed
 
             }
             // dd('Login Success');
         }
         else
         {
-            return redirect('/login')->with('message','Login Failed'); // with thi message show thase success or failed
+            return redirect('/login')->with('failed','Please Valid Email or Password'); // with thi message show thase success or failed
             // dd('Login Failed');
         }
 
@@ -78,6 +79,6 @@ class AuthController extends Controller
     {
         Auth::logout();
         Session:flush();
-        return redirect('/home');
+        return redirect('/dashboard');
     }
 }

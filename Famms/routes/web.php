@@ -4,8 +4,10 @@ use App\Http\Controllers\Backend\Cart\CartController;
 use App\Http\Controllers\Backend\Contact\ContactController;
 use App\Http\Controllers\Backend\EyeProduct\ProductCOntroller;
 use App\Http\Controllers\Backend\Home\BackendHomeController;
+use App\Http\Controllers\Backend\Testimonial\TestimonialController;
 use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Frontend\Auth\AuthController;
+use App\Http\Controllers\Frontend\Google\GoogleController;
 use App\Http\Controllers\Frontend\Home\FrontendHomecontroller;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Metadata\Api\HookMethods;
@@ -26,7 +28,7 @@ use PHPUnit\Metadata\Api\HookMethods;
 // });
 
 //Home Page
-Route::get("/home",[FrontendHomecontroller::class,'index']);
+Route::get("/dashboard",[FrontendHomecontroller::class,'index']);
 
 //Register Page
 Route::get("/register",[AuthController::class,'register'])->middleware('guest');
@@ -66,17 +68,39 @@ Route::get('/book/{id}', [CartController::class, 'addBooktoCart'])->name('addboo
 Route::patch('/update-shopping-cart', [CartController::class, 'updateCart'])->name('update.sopping.cart');
 Route::delete('/delete-cart-product', [CartController::class, 'deleteProduct'])->name('delete.cart.product');
 
-//contact
 
+//contact
 Route::get("/contact",[FrontendHomecontroller::class,'contact']);
 Route::post("/contact",[FrontendHomecontroller::class,'contactstore']);
 Route::get("/admin/contactview",[ContactController::class,'contactview']);
-Route::delete("/admin/delete-contact/{id}",[ContactController::class,'destroy']);
+// Route::delete("/admin/delete-contact/{id}",[ContactController::class,'destroy']);
 // Route::get("/admin/add-eyeproduct",[ProductCOntroller::class,'add']);
 // Route::post("/admin/add-eyeproduct",[ProductCOntroller::class,'store']);
 // Route::get("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update']);
 // Route::post("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update_change']);
 // Route::delete("/admin/delete-eyeproduct/{id}",[ProductCOntroller::class,'destroy']);
 
+//Testimonial
+Route::get("/admin/testimonial",[TestimonialController::class,'index']);
+Route::get("/admin/add-testimonial",[TestimonialController::class,'add']);
+Route::post("/admin/add-testimonial",[TestimonialController::class,'store']);
+Route::get("/admin/edit-testimonial/{id}",[TestimonialController::class,'update']);
+Route::post("/admin/edit-testimonial/{id}",[TestimonialController::class,'update_change']);
+Route::delete("/admin/delete-testimonial/{id}",[TestimonialController::class,'destroy']);
+// Route::get("/admin/logout",[UserController::class,'adminlogout']);
 
 
+//google route
+// Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+// Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });

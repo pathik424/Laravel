@@ -40,18 +40,18 @@
                                 <th>
                                     name
                                 </th>
-                                <th>
+                                {{-- <th>
                                     Username
-                                </th>
+                                </th> --}}
                                 <th>
                                     Email
                                 </th>
-                                <th>
+                                {{-- <th>
                                     City
                                 </th>
                                 <th>
                                     Age
-                                </th>
+                                </th> --}}
                                 <th>
                                     Action
                                 </th>
@@ -66,18 +66,18 @@
                                     <td>
                                         {{ $user->name }}
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         {{ $user->username }}
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         {{ $user->email }}
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         {{ $user->city }}
                                     </td>
                                     <td>
                                         {{ $user->age }}
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <a href="{{ url('admin/updateuser/' . $user->id) }}"
                                             class="btn btn-sm btn-primary">Update</a>

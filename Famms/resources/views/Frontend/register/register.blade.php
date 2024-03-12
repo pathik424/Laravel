@@ -15,18 +15,18 @@
       <div class="input-box">
         <input type="text" placeholder="Enter your name" name="name"required>
       </div>
-      <div class="input-box">
+      {{-- <div class="input-box">
         <input type="text" placeholder="Enter your username" name='username' required>
-      </div>
+      </div> --}}
       <div class="input-box">
         <input type="text" placeholder="Enter your email" name="email" required>
       </div>
-      <div class="input-box">
+      {{-- <div class="input-box">
         <input type="numbers" placeholder="Enter your age" name="age" required>
-      </div>
-      <div class="input-box">
+      </div> --}}
+      {{-- <div class="input-box">
         <input type="text" placeholder="Enter your city" name="city" required>
-      </div>
+      </div> --}}
       <div class="input-box">
         <input type="password" placeholder="Create password" name="password" required>
       </div>

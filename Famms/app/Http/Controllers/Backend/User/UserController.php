@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Myuser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +29,10 @@ class UserController extends Controller
 
       $users = new User;
       $users->name = $request->name;
-      $users->username = $request->username;
+    //   $users->username = $request->username;
       $users->email = $request->email;
-      $users->city = $request->city;
-      $users->age = $request->age;
+    //   $users->city = $request->city;
+    //   $users->age = $request->age;
       $users->password = $request->password;
       $users-> save();
 
@@ -50,10 +51,10 @@ class UserController extends Controller
         $updateuser = User::findOrFail($id);
 
         $updateuser->name = $request->name;
-        $updateuser->username = $request->username;
+        // $updateuser->username = $request->username;
         $updateuser->email = $request->email;
-        $updateuser->age = $request->age;
-        $updateuser->city = $request->city;
+        // $updateuser->age = $request->age;
+        // $updateuser->city = $request->city;
         $updateuser->password = $request->password;
         $updateuser->save();
 
@@ -63,7 +64,7 @@ class UserController extends Controller
 
     public function delete_user($id)
     {
-        $delete = user::findOrFail($id);
+        $delete = User::findOrFail($id);
         $delete->delete();
         return redirect('admin/myuser')->with('deleteusers',"Users deleted successfully");
     }
@@ -72,7 +73,7 @@ class UserController extends Controller
     {
         Auth::logout();
         Session:flush();
-        return redirect('/home');
+        return redirect('/dashboard');
     }
 
 }
