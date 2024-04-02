@@ -1,53 +1,51 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\register;
-use App\Http\Controllers\registercontroller;
-use App\Http\Controllers\YourNameController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get("/register",[registercontroller::class,"index"]);
-Route::get("/users",[YourNameController::class,"index"]);
-Route::get("/adduser",[YourNameController::class,"add"]);
-Route::post("/adduser",[YourNameController::class,"store"]);
-Route::post("/register",[registercontroller::class,"register"]);
+
+Route::get('/admin/login',[AuthController::class, 'login']);
+Route::post('/admin/login',[AuthController::class, 'Authlogin']);
+
+Route::get('/admin/register',[AuthController::class, 'register']);
+Route::post('/admin/register',[AuthController::class, 'store']);
+Route::get('logout',[AuthController::class, 'logout']);
+
+Route::get('admin/list', function () {
+    return view('admin.admin.list');
+});
+
+Route::group(['middleware' => 'admin'], function () {
+
+    Route::get('/admin/dashboard',[DashboardController::class, 'dashboard']);
+
+});
 
 
-// Product
+Route::group(['middleware' => 'teacher'], function () {
 
-// Route::get("/dashboard",[HomeHomecontroller::class,'index']);
-// Route::get("/product",[ProductController::class,'index']);
-// Route::get("/add-product",[ProductController::class,'add']);
-// Route::post("/add-product",[ProductController::class,'store']);
-// Route::get("/edit-product/{id}",[ProductController::class,'update']);
-// Route::put("/edit-product/{id}",[ProductController::class,'update_change']);
-// Route::delete("/delete-product/{id}",[ProductController::class,'destroy']);
+    Route::get('/teacher/dashboard',[DashboardController::class, 'dashboard']);
 
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Route::get("/admin/dashboard",[::class,'index']);
+});
 
 
+Route::group(['middleware' => 'student'], function () {
 
-Route::get('/dashboard', [ProductController::class, 'index']);
-Route::get('/shopping-cart', [ProductController::class, 'productCart'])->name('shopping.cart');
-Route::get('/product/{id}', [ProductController::class, 'addProducttoCart'])->name('addProduct.to.cart');
-Route::patch('/update-shopping-cart', [ProductController::class, 'updateCart'])->name('update.sopping.cart');
-Route::delete('/delete-cart-product', [ProductController::class, 'deleteProduct'])->name('delete.cart.product');
+    Route::get('/student/dashboard',[DashboardController::class, 'dashboard']);
+
+});
+
+
+Route::group(['middleware' => 'parent'], function () {
+
+    Route::get('/parent/dashboard',[DashboardController::class, 'dashboard']);
+
+    });
+
+
+
