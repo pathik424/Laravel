@@ -13,9 +13,13 @@ class FrontendHomecontroller extends Controller
        public function index()
        {
 
-        $product = eyeproduct::all();
+        // $product = eyeproduct::all();
+
+        $product = eyeproduct::whereIn('id', [5, 2])->get();
+
+
         $test = testimonial::all();
-        // dd($test);
+        // dd($product);
 
         return view('Frontend.Home.Home',compact('product','test'));
 

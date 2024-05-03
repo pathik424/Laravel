@@ -216,6 +216,30 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/class/list')}}" class="nav-link active">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>Class</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/subject/list')}}" class="nav-link active">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>Subject</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/assign/list')}}" class="nav-link active">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>Assign Subject</p>
+                </a>
+              </li>
+            </ul>
 
 
 

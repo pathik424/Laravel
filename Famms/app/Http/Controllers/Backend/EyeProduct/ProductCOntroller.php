@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Backend\EyeProduct;
 
 use App\Http\Controllers\Controller;
 use App\Models\eyeproduct;
+use App\Models\neweyeproduct;
 use Illuminate\Http\Request;
 
 class ProductCOntroller extends Controller
 {
     public function index()
     {
-
-
         $product = eyeproduct::all();
+
+        // dd($product);
 
         return view("Backend.Eyeproduct.index",compact('product'));
 
@@ -109,4 +110,94 @@ class ProductCOntroller extends Controller
         return redirect('admin/eyeproduct')->with('delete',"Product deleted successfully");
 
     }
+
+
+    // New Arrivals Product
+
+    public function newindex()
+    {
+        $product = neweyeproduct::all();
+        return view('Backend.Eyeproductnew.index',compact('product'));
+    }
+
+    public function newadd()
+    {
+        return view('Backend.Eyeproductnew.add');
+
+    }
+
+    public function newstore(request $request)
+    {
+        // dd($request);
+
+        if($request->hasFile("image"))
+        {
+            $file = $request->file("image");
+            //  dd($file);
+            $ext = $file->getClientOriginalExtension();
+            $image = 'upload/neweyeproduct/';
+            $source = $image. time(). '.'.$ext;
+            $file->move($image,$source);
+            // dd($image);
+        }
+
+
+        neweyeproduct::create([
+            'eyeproductname'=> $request->eyeproductname,
+            'price'=> $request->price,
+            'image'=> $source,
+        ]);
+
+        return redirect('admin/neweyeproduct')->with('eyeproduct',"Product added successfully");
+    }
+
+    public function newupdate($id)
+    {
+
+        $edit = neweyeproduct::findOrFail($id);
+        // dd($edit);
+        return view('Backend.Eyeproductnew.edit',compact('edit'));
+    }
+
+    public function newupdate_change(request $request,$id)
+    {
+        $update = neweyeproduct::findOrFail($id);
+
+
+        if($request->hasFile("image"))
+        {
+            $file = $request->file("image");
+            //  dd($file);
+            $ext = $file->getClientOriginalExtension();
+            $image = 'upload/neweyeproduct/';
+            $source = $image. time(). '.'.$ext;
+            $file->move($image,$source);
+            // dd($image);
+
+            $update->eyeproductname = $request->eyeproductname;
+            $update->price = $request->price;
+            $update->image = $source;
+            $update->save();
+        }
+
+        $update->eyeproductname = $request->eyeproductname;
+        $update->price = $request->price;
+        $update->save();
+
+        return redirect('admin/neweyeproduct')->with('updateeyeproduct',"Product update successfully");
+
+
+    }
+
+    public function newdestroy(request $request,$id)
+    {
+        $destroy = neweyeproduct::findOrFail($id);
+        $destroy->delete();
+
+        return redirect('admin/neweyeproduct')->with('delete',"Product deleted successfully");
+
+    }
+
+
 }
+

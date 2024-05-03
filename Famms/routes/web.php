@@ -6,9 +6,11 @@ use App\Http\Controllers\Backend\EyeProduct\ProductCOntroller;
 use App\Http\Controllers\Backend\Home\BackendHomeController;
 use App\Http\Controllers\Backend\Testimonial\TestimonialController;
 use App\Http\Controllers\Backend\User\UserController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\Frontend\Auth\AuthController;
 use App\Http\Controllers\Frontend\Google\GoogleController;
 use App\Http\Controllers\Frontend\Home\FrontendHomecontroller;
+use App\Http\Controllers\Frontend\Product\ProductController as ProductProductController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Metadata\Api\HookMethods;
 
@@ -29,6 +31,8 @@ use PHPUnit\Metadata\Api\HookMethods;
 
 //Home Page
 Route::get("/dashboard",[FrontendHomecontroller::class,'index']);
+Route::get("/product",[ProductProductController::class,'index']);
+Route::get("/newproduct",[ProductProductController::class,'indexnew']);
 
 //Register Page
 Route::get("/register",[AuthController::class,'register'])->middleware('guest');
@@ -59,6 +63,14 @@ Route::get("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update']);
 Route::post("/admin/edit-eyeproduct/{id}",[ProductCOntroller::class,'update_change']);
 Route::delete("/admin/delete-eyeproduct/{id}",[ProductCOntroller::class,'destroy']);
 Route::get("/admin/logout",[UserController::class,'adminlogout']);
+
+//new Arrivals Product
+Route::get("/admin/neweyeproduct",[ProductCOntroller::class,'newindex']);
+Route::get("/admin/add-neweyeproduct",[ProductCOntroller::class,'newadd']);
+Route::post("/admin/add-neweyeproduct",[ProductCOntroller::class,'newstore']);
+Route::get("/admin/edit-neweyeproduct/{id}",[ProductCOntroller::class,'newupdate']);
+Route::post("/admin/edit-neweyeproduct/{id}",[ProductCOntroller::class,'newupdate_change']);
+Route::delete("/admin/delete-neweyeproduct/{id}",[ProductCOntroller::class,'newdestroy']);
 
 
 

@@ -310,6 +310,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/admin/eyeproduct">Eyeproduct</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/neweyeproduct">New Arrivals Eyeproduct</a></li>
 
               </ul>
             </div>

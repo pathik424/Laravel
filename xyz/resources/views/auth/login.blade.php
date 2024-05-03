@@ -39,6 +39,12 @@
         {{ session('accessdenied') }}
      </div>
       @endif
+      @if (session('message'))
+     <div class="alert alert-success" role="alert">
+        {{ session('message') }}
+     </div>
+      @endif
+  
 
 
       <form action="" method="post">
@@ -80,7 +86,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="{{url('forgot-password')}}">I forgot my password</a>
+        <a href="{{ route('forget.password.get') }}">Reset Password</a>
       </p>
       <p class="mb-0">
         <a href="{{url('admin/register')}}" class="text-center">Register a new membership</a>
