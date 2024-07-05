@@ -61,7 +61,7 @@
                     <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
                     <div class="text-start">
                         <h6 class="text-uppercase mb-1">Email Us</h6>
-                        <span>info@example.com</span>
+                        <span></span>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,12 @@
                 <div class="d-inline-flex align-items-center">
                     <i class="bi bi-phone-vibrate fs-1 text-primary me-3"></i>
                     <div class="text-start">
-                        <h6 class="text-uppercase mb-1">Welcome - <?php $username ?> </h6>
+                 
+                    <!-- echo "<pre>";
+                        print_r($users);
+                        echo "</pre>"; -->
+                       
+                        <h6 class="text-uppercase mb-1">Welcome -   </h6>
                         <span></span>
                     </div>
                 </div>
@@ -108,7 +113,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Login-Logout</a>
                     <div class="dropdown-menu m-0">
                          
-          
+                 
                     <a href="register" class="dropdown-item">Register</a>
                     <a href="login" class="dropdown-item">Login</a>
                

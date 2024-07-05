@@ -96,3 +96,15 @@
 
 
 @endsection
+
+
+
+{{--
+                                if ($row->role === 0) ?>
+                            <h4>
+                                <span class="badge badge-danger ">Normal User</span>
+                            </h4>
+                            else
+                            <h4>
+                                <span class="badge badge-success ">Admin</span>
+                            </h4>--}}

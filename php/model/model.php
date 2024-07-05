@@ -108,15 +108,16 @@ class model
         $patsql = $this->connection->query($sql); // anathi badho j data database jode connect thase
         //   print_r($patsql);
         //   exit;
-
+        
         if ($patsql->num_rows > 0) // num_rows uparthi avse print_r($patsql); karvatthi
-
+        
         {
             //    $data = $patsql->fetch_object(); // anathi ek j array show thay while loop best che
             //    echo  "<pre>";
             //    print_r($data);
             //    echo  "</pre>";
-
+            //     //  exit;
+               
             while ($data = $patsql->fetch_object()) // anathi jetla pan data ek karta vadhare data hase e match thai jase
             {
                 $datas[] = $data;

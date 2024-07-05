@@ -65,7 +65,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>All Products</a>
                         <div class="dropdown-menu bg-transparent border-0">
                         <!-- <a href="admin-products" class="nav-item nav-link"><i class="fa fa-user-circle me-2"></i>Products</a> -->
-                            <a href="admin-products" class="dropdown-item">Products</a>
+                            <a href="admin-product" class="dropdown-item">Products</a>
                             <a href="admin-treat" class="dropdown-item">Treat</a>
                             <a href="admin-chews" class="dropdown-item">Chews</a>
                             <a href="admin-toys" class="dropdown-item">Toys</a>
